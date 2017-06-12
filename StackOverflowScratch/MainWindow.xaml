@@ -1,0 +1,34 @@
+﻿<Window x:Class="StackOverflowScratch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StackOverflowScratch"
+        xmlns:so44497239="clr-namespace:StackOverflowScratch.ViewModel.SO44497239"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Add new tab item" Command="{Binding AddNewTabCommand}"></Button>
+        <TabControl Grid.Row="1"
+                    ItemsSource="{Binding TextTabs}"
+                    IsSynchronizedWithCurrentItem="True">
+            <!-- Defines the header -->
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type so44497239:TextViewModel}">
+                    <TextBlock Text="{Binding Header}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            
+            <!-- defines the context of each tab -->
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type so44497239:TextViewModel}">
+                    <RichTextBox Background="#FF098BBB" Foreground="WhiteSmoke" IsReadOnly="False" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>
